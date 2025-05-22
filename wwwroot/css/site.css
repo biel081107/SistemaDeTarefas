@@ -1,0 +1,131 @@
+:root {
+  --primary: #26168C;      /* Azul principal */
+  --secondary: #110E59;    /* Azul escuro para hover/destaques */
+  --dark: #0B0940;         /* Fundo de cards/modais */
+  --accent: #F2F2F2;       /* Detalhes, listas, campos, contraste claro */
+  --background: #020426;   /* Fundo geral */
+  --text-light: #F2F2F2;   /* Texto claro para fundos escuros */
+  --text-dark: #110E59;    /* Texto escuro para fundos claros */
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+
+
+body {
+  margin-bottom: 60px;
+  background: var(--background);
+  color: var(--text-light);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--secondary);
+}
+
+/* Botões principais seguem a paleta 
+.btn, .btn-primary {
+  color: var(--text-light);
+  background-color: var(--primary);
+  border-color: var(--secondary);
+  transition: background 0.2s, border 0.2s;
+}
+.btn:hover, .btn:focus, .btn-primary:hover, .btn-primary:focus {
+  background-color: var(--secondary);
+  border-color: var(--primary);
+  color: var(--text-light);
+}
+*/
+/* Danger e Warning padrão Bootstrap */
+
+.card, .modal-content {
+  background: var(--dark);
+  color: var(--text-light);
+  border: none;
+}
+
+.list-group-item {
+  background: var(--accent);
+  color: var(--text-dark);
+  border: none;
+}
+form .bg-dark-custom{
+  background: var(--primary);
+  color: var(--text-light);
+  border-radius: 1em;
+}
+
+.form-control, .form-select {
+    background: #fff !important;
+    color: #110E59 !important;
+    border: 2px solid #26168C !important;
+    border-radius: 0.5em;
+    font-weight: 500;
+    box-shadow: 0 1px 4px rgba(38,22,140,0.04);
+    transition: border 0.2s, box-shadow 0.2s;
+}
+.bg-dark-custom {
+  background: var(--dark);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #110E59 !important;
+    box-shadow: 0 0 0 0.15rem #26168c33;
+    background: #fff !important;
+    color: #110E59 !important;
+}
+.form-floating > .form-control-plaintext::placeholder, 
+.form-floating > .form-control::placeholder {
+  color: var(--secondary);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, 
+.form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+/* Melhor contraste para títulos e cabeçalhos */
+h1, h2, h3, h4, h5, h6, .fw-bold {
+  color: var(--accent);
+  text-shadow: 0 1px 2px rgba(32,4,38,0.08);
+}
+
+/* Bordas e divisores mais suaves */
+hr, .border, .border-top, .border-bottom {
+  border-color: #23234a !important;
+}
+
+/* Scrollbar discreta */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--dark);
+  border-radius: 4px;
+}
+
+.text-muted {
+  color: #b3b8d1 !important; /* Um cinza claro azulado, visível em fundo escuro */
+}

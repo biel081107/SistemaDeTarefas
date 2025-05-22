@@ -1,0 +1,395 @@
+
+@model _2MVC.Models.Projeto
+
+
+<style>
+/* Modernização visual usando a paleta oficial */
+body, .container {
+    background: var(--background);
+}
+
+.card {
+    background: var(--dark);
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 0 rgba(38,22,140,0.10), 0 1.5px 6px 0 rgba(17,14,89,0.08);
+    border: none;
+}
+
+.card-header {
+    background: var(--primary) !important;
+    color: var(--text-light) !important;
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 2px 8px rgba(38,22,140,0.08);
+    letter-spacing: 1px;
+}
+
+.card-footer {
+    background: transparent;
+    border-top: none;
+    border-radius: 0 0 22px 22px;
+}
+
+h2, h4 {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.list-group-item {
+    background: var(--accent);
+    color: var(--text-dark);
+    border-radius: 12px !important;
+    margin-bottom: 10px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(38,22,140,0.04);
+    transition: box-shadow 0.2s;
+}
+.list-group-item:hover {
+    box-shadow: 0 6px 18px rgba(38,22,140,0.10);
+}
+
+.badge.bg-success, .badge.bg-danger, .badge.bg-warning {
+    font-size: 0.95em;
+    padding: 0.5em 1.2em;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-primary, .btn-primary:focus {
+    background: var(--primary);
+    border-color: var(--secondary);
+    color: var(--text-light);
+}
+.btn-primary:hover {
+    background: var(--secondary);
+    border-color: var(--primary);
+}
+
+.btn-secondary, .btn-secondary:focus {
+    background: var(--accent);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+.btn-secondary:hover {
+    background: var(--primary);
+    color: var(--accent);
+}
+
+.btn-warning, .btn-warning:focus {
+    background: #ffe066;
+    color: var(--secondary);
+    border-color: #ffe066;
+}
+.btn-warning.transition-hover:hover i svg {
+    color: #fff700;
+    fill: #fff700;
+    transition: color 0.2s, fill 0.2s;
+    /* Mantém o amarelo, mas destaca no hover */
+}
+
+.btn-danger, .btn-danger:focus {
+    background: #e63946;
+    border-color: #e63946;
+    color: var(--accent);
+}
+.btn-danger:hover {
+    background: #a4161a;
+    border-color: #a4161a;
+}
+
+.btn-success, .btn-success:focus {
+    background: #06d6a0;
+    border-color: #06d6a0;
+    color: var(--dark);
+}
+.btn-success:hover {
+    background: #118ab2;
+    border-color: #118ab2;
+    color: var(--accent);
+}
+
+.btn {
+    border-radius: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(38,22,140,0.08);
+    transition: transform 0.18s, box-shadow 0.18s;
+}
+.btn:active {
+    transform: scale(0.97);
+}
+.btn.rounded-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+.btn.rounded-circle i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+}
+.btn-primary.transition-hover:hover i svg {
+    color: #FFD700;
+    fill: #FFD700;
+    transition: color 0.2s, fill 0.2s;
+}
+
+.modal-content {
+    background: var(--dark);
+    color: var(--text-light);
+    border-radius: 18px;
+    border: none;
+    box-shadow: 0 8px 32px 0 rgba(38,22,140,0.12);
+}
+
+.form-control, .form-select {
+    background: var(--accent);
+    color: var(--text-dark);
+    border: 1.5px solid var(--primary);
+    border-radius: 10px;
+    font-size: 1.05em;
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 0.2rem rgba(38,22,140,0.10);
+    background: var(--accent);
+    color: var(--text-dark);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--dark);
+    border-radius: 4px;
+}
+
+.transition-hover {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.transition-hover:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(38,22,140,0.15);
+}
+</style>
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0">@Model.Nome</h2>
+        </div>
+        <div class="card-body">
+            <p class="text-muted"><strong>Descrição:</strong> @Model.Descricao</p>
+            <h4 class="mt-4">Tarefas:</h4>
+            <ul class="list-group mb-4">
+                <div style="max-height: @(ViewBag.Tarefas != null && ViewBag.Tarefas.Count > 3 ? "400px" : "none"); overflow-y: @(ViewBag.Tarefas != null && ViewBag.Tarefas.Count > 4 ? "auto" : "visible");">
+                    @foreach (var tarefa in ViewBag.Tarefas)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center py-3" style="border-radius: 10px; margin-bottom: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                            <div class="d-flex align-items-center">
+                                <span class="me-2" style="font-size: 1em;">
+                                    <strong>@tarefa.Titulo</strong>
+                                </span>
+                                @if (tarefa.Status == 1)
+                                {
+                                    <span class="badge bg-success ms-2">Concluída</span>
+                                }
+                                else if (tarefa.Status == 2)
+                                {
+                                    <span class="badge bg-danger ms-2">Cancelada</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark ms-2">Pendente</span>
+                                }
+                            </div>
+                            <!-- Botão de abrir modal (ícone de cruz) -->
+                            <div class="d-flex align-items-center">
+                            <button class="btn btn-primary btn-sm rounded-circle me-1 shadow-sm transition-hover"
+                                    title="Detalhes"
+                                    style="width:32px;height:32px;"
+                                    type="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#detalhesTarefaModal-@tarefa.IdTarefa">
+                                <i style="display:flex;align-items:center;justify-content:center;width:18px;height:18px;">
+                                    <!-- Ícone de olho (Eye) do Bootstrap Icons -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="100%" height="100%" fill="currentColor">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4.5c-3.584 0-6.29-3.13-7.254-4.5C1.71 6.63 4.416 3.5 8 3.5c3.584 0 6.29 3.13 7.254 4.5-.964 1.37-3.67 4.5-7.254 4.5z"/>
+                                        <path d="M8 5.5A2.5 2.5 0 1 0 8 10a2.5 2.5 0 0 0 0-4.5zm0 1A1.5 1.5 0 1 1 8 9a1.5 1.5 0 0 1 0-3z"/>
+                                    </svg>
+                                </i>
+                            </button>
+                            <button class="btn btn-warning btn-sm rounded-circle shadow-sm"
+                                    title="Editar"
+                                    style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;"
+                                    type="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editarTarefaModal-@tarefa.IdTarefa">
+                                <i style="display:flex;align-items:center;justify-content:center;width:18px;height:18px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%" fill="currentColor">
+                                        <path d="M290.74 93.24a48 48 0 0 1 67.88 0l60.14 60.14a48 48 0 0 1 0 67.88l-216 216a48 48 0 0 1-22.63 12.73l-99.7 28.48a16 16 0 0 1-19.6-19.6l28.48-99.7a48 48 0 0 1 12.73-22.63l216-216zm124.12-45.25c-24.99-24.99-65.52-24.99-90.51 0l-39.6 39.6 90.51 90.51 39.6-39.6c24.99-24.99 24.99-65.52 0-90.51z"/>
+                                    </svg>
+                                </i>
+                            </button>
+                        </div>
+                        </li>
+                        <!-- Modal Detalhes da Tarefa -->
+                        <div class="modal fade" id="detalhesTarefaModal-@tarefa.IdTarefa" tabindex="-1" aria-labelledby="detalhesTarefaModalLabel-@tarefa.IdTarefa" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content" style="border-radius: 18px;">
+                                    <div class="modal-header pb-0" style="border-bottom: none;">
+                                        <h5 class="modal-title fw-bold" id="detalhesTarefaModalLabel-@tarefa.IdTarefa">@tarefa.Titulo</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                    </div>
+                                    <div class="modal-body px-4 pt-2 pb-0">
+                                        <p class="mb-3"><strong>Descrição:</strong> <span class="text-secondary">@tarefa.Descricao</span></p>
+                                        <p class="mb-3"><strong>Status:</strong>
+                                            @if (tarefa.Status == 1)
+                                            {
+                                                <span class="badge bg-success px-3 py-2">Concluída</span>
+                                            }
+                                            else if (tarefa.Status == 2)
+                                            {
+                                                <span class="badge bg-danger px-3 py-2">Cancelada</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning text-dark px-3 py-2">Pendente</span>
+                                            }
+                                        </p>
+                                        <p class="mb-3"><strong>Data de Entrega:</strong> <span class="text-secondary">@(tarefa.DataEntrega != null ? tarefa.DataEntrega.ToString("dd/MM/yyyy") : "-")</span></p>
+                                        <p class="mb-0"><strong>Projeto:</strong> <span class="text-secondary">@Model.Nome</span></p>
+                                    </div>
+                                    <div class="modal-footer d-flex flex-column flex-sm-row justify-content-end gap-2 px-4 pb-4 pt-3" style="border-top: none;">
+                                        @if (tarefa.Status != 1)
+                                        {
+                                            <form asp-action="TarefasConcluir" asp-controller="Tarefas" asp-route-id="@tarefa.IdTarefa" method="post" class="d-inline">
+                                                <input type="hidden" name="IdTarefa" value="@tarefa.IdTarefa" />
+                                                <button type="submit" class="btn btn-success shadow-sm px-4 py-2">Concluir</button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form asp-action="TarefasAtivar" asp-controller="Tarefas" asp-route-id="@tarefa.IdTarefa" method="post" class="d-inline">
+                                                <input type="hidden" name="IdTarefa" value="@tarefa.IdTarefa" />
+                                                <button type="submit" class="btn btn-warning shadow-sm px-4 py-2">Ativar</button>
+                                            </form>
+                                        }
+                                        @if (tarefa.Status != 2)
+                                        {
+                                            <form asp-action="TarefasCancelar" asp-controller="Tarefas" asp-route-id="@tarefa.IdTarefa" method="post" class="d-inline">
+                                                <input type="hidden" name="IdTarefa" value="@tarefa.IdTarefa" />
+                                                <button type="submit" class="btn btn-danger shadow-sm px-4 py-2">Cancelar</button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form asp-action="TarefasExcluir" asp-controller="Tarefas" asp-route-id="@tarefa.IdTarefa" method="post" class="d-inline">
+                                                <input type="hidden" name="IdTarefa" value="@tarefa.IdTarefa" />
+                                                <button type="submit" class="btn btn-danger shadow-sm px-4 py-2">Excluir</button>
+                                            </form>
+                                        }
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal Editar da Tarefa -->
+                        <div class="modal-footer d-flex flex-column flex-sm-row justify-content-between gap-2">
+                        <div class="modal fade" id="editarTarefaModal-@tarefa.IdTarefa" tabindex="-1" aria-labelledby="editarTarefaModalLabel-@tarefa.IdTarefa" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editarTarefaModalLabel-@tarefa.IdTarefa">Editar Tarefa</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                    </div>
+                                    <form asp-action="TarefasEditar" asp-controller="Tarefas" method="post">
+                                        <input type="hidden" name="IdTarefa" value="@tarefa.IdTarefa" />
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="Titulo-@tarefa.IdTarefa" class="form-label">Título</label>
+                                                <input type="text" class="form-control" id="Titulo-@tarefa.IdTarefa" name="Titulo" value="@tarefa.Titulo" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="Descricao-@tarefa.IdTarefa" class="form-label">Descrição</label>
+                                                <textarea class="form-control" id="Descricao-@tarefa.IdTarefa" name="Descricao" rows="3" required>@tarefa.Descricao</textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="DataEntrega-@tarefa.IdTarefa" class="form-label">Data de Entrega</label>
+                                                <input type="date" class="form-control" id="DataEntrega-@tarefa.IdTarefa" name="DataEntrega" value="@(tarefa.DataEntrega != null ? tarefa.DataEntrega.ToString("yyyy-MM-dd") : "")">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary shadow-sm transition-hover" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary shadow-sm transition-hover">Salvar Alterações</button>
+                                        </div>
+                                        <input type="hidden" name="IdProjeto" value="@Model.IdProjeto" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    }
+                </div>
+                </ul>
+            <p class="text-muted"><strong>Data de Início:</strong> @Model.DataInicio.ToString("dd/MM/yyyy")</p>
+            <p class="text-muted"><strong>Data de Fim:</strong> @Model.DataFim?.ToString("dd/MM/yyyy")</p>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="TarefasAdicionar" asp-controller="Tarefas" asp-route-IdProjeto="@Model.IdProjeto" class="btn btn-primary btn-lg me-2 shadow-sm transition-hover">Adicionar Tarefa</a>
+            <a asp-action="ProjetosIndex" class="btn btn-secondary btn-lg me-2 shadow-sm transition-hover">Voltar</a>
+            <button class="btn btn-warning btn-lg me-2 shadow-sm transition-hover" data-bs-toggle="modal" data-bs-target="#editarProjetoModal">Editar</button>
+            <form asp-action="ProjetosCancelar" asp-route-id="@Model.IdProjeto" method="post" class="d-inline">
+                <input type="hidden" name="idProjeto" value="@Model.IdProjeto"/>
+                <button type="submit" class="btn btn-danger btn-lg me-2 shadow-sm transition-hover">Cancelar</button>
+            </form>
+            <form asp-action="ProjetosConcluir" asp-route-id="@Model.IdProjeto" method="post" class="d-inline">
+                <input type="hidden" name="idProjeto" value="@Model.IdProjeto"/>
+                <button type="submit" class="btn btn-success btn-lg shadow-sm transition-hover">Concluir</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para editar projeto -->
+    <div class="modal fade" id="editarProjetoModal" tabindex="-1" aria-labelledby="editarProjetoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarProjetoModalLabel">Editar Projeto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form asp-action="Editar" asp-route-id="@Model.IdProjeto" method="post">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="Nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="Nome" name="Nome" value="@Model.Nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Descricao" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="Descricao" name="Descricao" rows="3" required>@Model.Descricao</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="DataInicio" class="form-label">Data de Início</label>
+                            <input type="date" class="form-control" id="DataInicio" name="DataInicio" value="@Model.DataInicio.ToString("yyyy-MM-dd")" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="DataFim" class="form-label">Data de Fim</label>
+                            <input type="date" class="form-control" id="DataFim" name="DataFim" value="@Model.DataFim?.ToString("yyyy-MM-dd")">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary shadow-sm transition-hover" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary shadow-sm transition-hover">Salvar Alterações</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+}

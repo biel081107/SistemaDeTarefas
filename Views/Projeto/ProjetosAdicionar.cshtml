@@ -1,0 +1,28 @@
+@model _2MVC.Models.Projeto
+
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+        <form method="post" asp-action="ProjetosAdicionar" asp-controller="Projeto" class="p-4 rounded shadow-sm bg-dark-custom">
+            <div class="mb-3">
+                <label asp-for="Nome" class="form-label fw-bold">Nome do Projeto</label>
+                <input asp-for="Nome" class="form-control" required placeholder="Nome do projeto" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Descricao" class="form-label fw-bold">Descrição</label>
+                <textarea asp-for="Descricao" class="form-control" rows="3" required placeholder="Descrição detalhada"></textarea>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DataInicio" class="form-label fw-bold">Data de Início</label>
+                <input asp-for="DataInicio" type="date" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label asp-for="DataFim" class="form-label fw-bold">Data de Término</label>
+                <input asp-for="DataFim" type="date" class="form-control" />
+            </div>
+            <input type="hidden" asp-for="Status" value="0" />
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary fw-bold shadow-sm">Adicionar Projeto</button>
+            </div>
+        </form>
+    </div>
+</div>

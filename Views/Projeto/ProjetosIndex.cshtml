@@ -1,0 +1,230 @@
+@model List<_2MVC.Models.Projeto>
+
+@{
+    ViewData["Title"] = "Projetos em Progresso";
+}
+
+<style>
+    /* Card base style for em progresso */
+    .card-status {
+        border-radius: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 2px solid #FFD700;
+        background-color: #26168d;
+        min-height: 340px; /* ou ajuste conforme preferir */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* mudou aqui */
+    }
+    .card-status:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(38, 22, 140, 0.18);
+    }
+    .card-status .card-title {
+        color: #FFD700;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: bold;
+    }
+    .card-status .card-title i {
+        color: #FFD700;
+    }
+    .card-status .card-text,
+    .card-status .text-muted {
+        color: #F2F2F2 !important;
+    }
+    /* Limita descrição a 3 linhas com reticências apenas na descrição */
+    .card-status .descricao-limitada {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-height: 72px;
+        max-height: 72px;
+    }
+
+    /* Botões */
+    .btn-primary {
+        background: #0e073d !important;
+        border-radius: 0.5em;
+        color: #FFD700 !important;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+    }
+    .btn-primary:hover, .btn-primary:focus {
+        background: rgb(250, 250, 250) !important;
+        color: #26168C !important;
+    }
+    .btn-warning {
+        background: #FFD700;
+        border-color: #FFD700;
+        color: #26168C;
+    }
+    .btn-warning:hover, .btn-warning:focus {
+        background: #e0a800;
+        border-color: #e0a800;
+        color: #fff;
+    }
+    .btn-danger {
+        background: #c82333;
+        border-color: #c82333;
+        color: #fff;
+    }
+    .btn-danger:hover, .btn-danger:focus {
+        background: #a71d2a;
+        border-color: #a71d2a;
+        color: #fff;
+    }
+    .btn-success {
+        background: #198754;
+        border-color: #198754;
+        color: #fff;
+    }
+    .btn-success:hover, .btn-success:focus {
+        background: #157347;
+        border-color: #146c43;
+        color: #fff;
+    }
+    .btn-outline-secondary {
+        border-color: #FFD700 !important;
+        color: #FFD700 !important;
+        background: transparent;
+        font-weight: 600;
+    }
+    .btn-outline-secondary:hover, .btn-outline-secondary:focus {
+        background: #FFD700 !important;
+        color: #26168C !important;
+        border-color: #FFD700 !important;
+    }
+    .btn-outline-success {
+        background-color: transparent;
+        border-color: #28a745;
+        color: #28a745;
+    }
+    .btn-outline-success:hover, .btn-outline-success:focus {
+        background-color: #28a745;
+        color: #fff;
+    }
+    .btn-outline-danger {
+        background-color: transparent;
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+    .btn-outline-danger:hover, .btn-outline-danger:focus {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    /* Modal */
+    .modal-content {
+        background: var(--dark, #181818);
+        color: var(--text-light, #F2F2F2);
+        border-radius: 16px;
+        border: 2px solid #FFD700;
+    }
+    .modal-header, .modal-footer {
+        border: none;
+    }
+    .modal-title {
+        color: #FFD700;
+    }
+    .modal-header {
+        border-bottom: 1px solid #FFD700 !important;
+    }
+    .modal-footer {
+        border-top: 1px solid #FFD700 !important;
+    }
+    .btn-close-white {
+        filter: invert(1);
+    }
+    .modal-label-yellow {
+        color: #FFD700;
+        font-weight: bold;
+    }
+    .btn-modal-close {
+        border-color: #FFD700;
+        color: #FFD700;
+    }
+</style>
+<div class="container mt-4">
+    <h1 class="text-center mb-4 fw-bold" style="color: #FFD700;">Projetos em Progresso</h1>
+    <div class="row">
+        @foreach (var projeto in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card card-status">
+                    <div class="card-body">
+                        <h5 class="card-title">@projeto.Nome</h5>
+                        <p class="card-text descricao-limitada">@projeto.Descricao</p>
+                        <p class="card-text"><strong>Data Início:</strong> @projeto.DataInicio.ToString("dd/MM/yyyy")</p>
+                        <p class="card-text"><strong>Data Fim:</strong> @projeto.DataFim?.ToString("dd/MM/yyyy")</p>
+                            <div class="d-flex flex-column gap-2 mt-3">
+                                <form method="post" asp-action="ProjetosDetalhes" asp-controller="Projeto">
+                                    <input type="hidden" name="idProjeto" value="@projeto.IdProjeto" />
+                                    <button type="submit" class="btn btn-primary rounded w-100">+ Informações</button>
+                                </form>
+                                <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#editarProjetoModal-@projeto.IdProjeto">Editar</button>
+                                <form method="post" asp-action="ProjetosCancelar" asp-controller="Projeto">
+                                    <input type="hidden" name="idProjeto" value="@projeto.IdProjeto" />
+                                    <button type="submit" class="btn btn-danger w-100" onclick="return confirm('Tem certeza que deseja Cancelar este projeto?')">Cancelar</button>
+                                </form>
+                                <form method="post" asp-action="ProjetosConcluir" asp-controller="Projeto">
+                                    <input type="hidden" name="idProjeto" value="@projeto.IdProjeto"/>
+                                    <button type="submit" class="btn btn-success w-100">Concluir</button>
+                                </form>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <!-- Modal para editar projeto -->
+            <div class="modal fade" id="editarProjetoModal-@projeto.IdProjeto" tabindex="-1" aria-labelledby="editarProjetoModalLabel-@projeto.IdProjeto" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editarProjetoModalLabel-@projeto.IdProjeto">Editar Projeto</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" asp-action="ProjetosEditar" asp-controller="Projeto">
+                                <input type="hidden" name="IdProjeto" value="@projeto.IdProjeto" />
+                                <div class="mb-3">
+                                    <label for="nomeProjeto-@projeto.IdProjeto" class="form-label">Nome</label>
+                                    <input name="Nome" class="form-control" id="nomeProjeto-@projeto.IdProjeto" value="@projeto.Nome">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descricaoProjeto-@projeto.IdProjeto" class="form-label">Descrição</label>
+                                    <textarea name="Descricao" class="form-control" id="descricaoProjeto-@projeto.IdProjeto">@projeto.Descricao</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dataInicioProjeto-@projeto.IdProjeto" class="form-label">Data Início</label>
+                                    <input name="DataInicio" class="form-control" id="dataInicioProjeto-@projeto.IdProjeto" type="date" value="@projeto.DataInicio.ToString("yyyy-MM-dd")">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dataFimProjeto-@projeto.IdProjeto" class="form-label">Data Fim</label>
+                                    <input name="DataFim" class="form-control" id="dataFimProjeto-@projeto.IdProjeto" type="date" value="@projeto.DataFim?.ToString("yyyy-MM-dd")">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <!-- Botões adicionais -->
+        <div class="d-flex flex-column align-items-center gap-3">
+            <form method="get" asp-action="ProjetosAdicionar" asp-controller="Projeto" class="w-100">
+                <button type="submit" class="btn btn-outline-secondary btn-lg w-100">+ Adicionar Novo Projeto</button>
+            </form>
+            <form method="get" asp-action="ProjetosConcluido" asp-controller="Projeto" class="w-100">
+                <button type="submit" class="btn btn-outline-success btn-lg w-100">Projetos Concluídos</button>
+            </form>
+            <form method="get" asp-action="ProjetosCancelados" asp-controller="Projeto" class="w-100">
+                <button type="submit" class="btn btn-outline-danger btn-lg w-100">Projetos Cancelados</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+@model _2MVC.Models.Tarefa
+
+<h2 class="mb-4 text-center">Adicionar Tarefa</h2>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="TarefasAdicionar" asp-controller="Tarefas" method="post" class="p-4 rounded shadow-sm bg-dark-custom">
+            <input type="hidden" name="IdProjeto" value="@ViewBag.IdProjeto" />
+            <div class="mb-3">
+                <label asp-for="Titulo" class="form-label fw-bold"></label>
+                <input asp-for="Titulo" class="form-control" required placeholder="Título da tarefa" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Descricao" class="form-label fw-bold"></label>
+                <textarea asp-for="Descricao" class="form-control" rows="3" required placeholder="Descrição detalhada"></textarea>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DataEntrega" class="form-label fw-bold">Data de Entrega</label>
+                <input asp-for="DataEntrega" type="date" class="form-control" required />
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">Adicionar</button>
+            </div>
+            <input type="hidden" name="status" value="0" /> <!--POR PADRÃO QUANDO ADICIONAR A TAREFA O STATUS É 0, POIS ESTÁ EM ANDAMENTO-->
+        </form>
+    </div>
+</div>

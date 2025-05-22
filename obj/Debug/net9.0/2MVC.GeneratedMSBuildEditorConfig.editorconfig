@@ -1,0 +1,85 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = _2MVC
+build_property.RootNamespace = _2MVC
+build_property.ProjectDir = C:\Users\gabri\ASP_PROJECTS\2MVC\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\gabri\ASP_PROJECTS\2MVC
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Contato/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGF0b1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Projeto/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamV0b1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Projeto/ProjetosAdicionar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamV0b1xQcm9qZXRvc0FkaWNpb25hci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Projeto/ProjetosCancelados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamV0b1xQcm9qZXRvc0NhbmNlbGFkb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Projeto/ProjetosConcluido.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamV0b1xQcm9qZXRvc0NvbmNsdWlkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Projeto/ProjetosDetalhes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamV0b1xQcm9qZXRvc0RldGFsaGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Projeto/ProjetosIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamV0b1xQcm9qZXRvc0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Projeto/_cardsProjetos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamV0b1xfY2FyZHNQcm9qZXRvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Tarefas/TarefasAdicionar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFyZWZhc1xUYXJlZmFzQWRpY2lvbmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/gabri/ASP_PROJECTS/2MVC/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-hbro3e6jgr
