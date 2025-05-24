@@ -1,4 +1,4 @@
-# Etapa base (runtime)
+# Etapa base
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview AS base
 WORKDIR /app
 EXPOSE 80
@@ -8,13 +8,12 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0-preview AS build
 WORKDIR /src
 COPY . .
 
-# Publica o projeto principal, que está em 2MVC/2MVC.csproj
-RUN dotnet publish 2MVC/2MVC.csproj -c Release -o /app/publish
+# Corrigido: projeto está na raiz
+RUN dotnet publish 2MVC.csproj -c Release -o /app/publish
 
 # Etapa final
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
-# Define o ponto de entrada com base no nome do projeto
 ENTRYPOINT ["dotnet", "2MVC.dll"]
