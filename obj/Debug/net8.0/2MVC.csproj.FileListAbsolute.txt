@@ -279,3 +279,4 @@ C:\Users\gabri\ASP_PROJECTS\2MVC\obj\Debug\net8.0\refint\2MVC.dll
 C:\Users\gabri\ASP_PROJECTS\2MVC\obj\Debug\net8.0\2MVC.pdb
 C:\Users\gabri\ASP_PROJECTS\2MVC\obj\Debug\net8.0\2MVC.genruntimeconfig.cache
 C:\Users\gabri\ASP_PROJECTS\2MVC\obj\Debug\net8.0\ref\2MVC.dll
+C:\Users\gabri\ASP_PROJECTS\2MVC\bin\Debug\net8.0\SistemaDeTarefas.db

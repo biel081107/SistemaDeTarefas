@@ -16,6 +16,7 @@ public class GestaoContext : DbContext
             entity =>
             {
                 entity.HasKey(e => e.IdProjeto);
+                entity.Property(e => e.IdProjeto).ValueGeneratedOnAdd(); // ✅ Aqui
                 entity.Property(e => e.DataFim).HasColumnType("datetime");
                 entity.Property(e => e.DataInicio).HasColumnType("datetime").IsRequired();
                 entity.Property(e => e.Descricao).HasMaxLength(500);
@@ -23,11 +24,13 @@ public class GestaoContext : DbContext
                 entity.Property(e => e.Status).HasDefaultValue(0).IsRequired();
             }
         );
+            
 
         modelBuilder.Entity<Tarefa>(
             entity =>
             {
                 entity.HasKey(e => e.IdTarefa);
+                entity.Property(e => e.IdTarefa).ValueGeneratedOnAdd(); // ✅ Aqui
                 entity.Property(e => e.DataEntrega).HasColumnType("datetime").IsRequired();
                 entity.Property(e => e.Descricao).HasMaxLength(500);
                 entity.Property(e => e.Titulo).HasMaxLength(100).IsRequired();

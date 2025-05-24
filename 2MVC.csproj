@@ -17,6 +17,12 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.5" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="SistemaDeTarefas.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+</ItemGroup>
 
   <ItemGroup>
     <Content Update="appsettings.json">
